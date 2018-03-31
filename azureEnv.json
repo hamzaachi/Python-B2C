@@ -1,0 +1,41 @@
+{
+
+    "debug":{
+        "documentDB":{
+            "host": "https://debug-env.documents.azure.com:443",
+            "masterKey": "",
+            "connString": ""
+        },
+        "iotHub":{
+            "host": "debug-env.azure-devices.net",
+            "masterKey": "",
+            "connString": ""
+        },
+        "graphAPI":{
+            "b2cTenant": "debugenvb2c.onmicrosoft.com",
+            "graphBaseURL": "https://graph.windows.net/",
+            "accessTokenURL": "https://login.microsoftonline.com/debugenvb2c.onmicrosoft.com/oauth2/token",
+            "clientID": "",
+            "clientSecret": ""
+        }
+    },
+    "dev":{
+        "documentDB":{
+            "host": "",
+            "masterKey": "",
+            "connString": ""
+        },
+        "iotHub":{
+            "host": "",
+            "masterKey": "",
+            "connString": ""
+        },
+        "graphAPI":{
+            "b2cTenant": "",
+            "graphBaseURL": "https://graph.windows.net/",
+            "accessTokenURL": "https://login.microsoftonline.com/cevitaldevb2c.onmicrosoft.com/oauth2/token",
+            "clientID": "",
+            "clientSecret": ""
+        }
+    }
+}
