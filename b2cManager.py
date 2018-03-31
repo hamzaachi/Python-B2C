@@ -46,6 +46,16 @@ class m2cManager(object):
         userDetails['address'] = jsondata["streetAddress"]
         userDetails['emailAddress'] = jsondata["signInNames"][0]["value"]
         return userDetails
+    
+    def deleteb2cUserbySignInEmail(self,emailfilter):
+        token = self.getToken()
+        graphURL = self.authSettings['graphBaseURL'] + self.authSettings['b2cTenant'] + '/users/' + '?api-version=1.6' + '&$filter=' + emailfilter
+        headers = { "Authorization": "Bearer " + token }
+        objectID = requests.get(graphURL, headers= headers).json()["value"][0]["objectId"]
+        print(objectID)
+        graphURL = self.authSettings['graphBaseURL'] + self.authSettings['b2cTenant'] + '/users/' + objectID + '?api-version=1.6'
+        requests.delete(graphURL, headers= headers)
+
 
 if __name__ == '__main__':
     with open('azureEnv.json', 'r') as f:
@@ -62,8 +72,10 @@ if __name__ == '__main__':
     #allUserURL = 'https://graph.windows.net/debugenvb2c.onmicrosoft.com/users/c965k82d-a595-4913-a0a3-df3hj52ok252e6a?api-version=1.6'
     ObjectID = 'e8e2dd76-c664-4392-82a7-df0c6605f1f4'
     filtername = "givenName eq 'Alkjh' and surname eq 'Hmri'"
+    emailfilter = "signInNames/any(c:c/value eq 'h11mara@gmail.com')"
     #print(json.dumps(b2c.getB2CUserByObjectID(ObjectID), indent=4))
-    print(json.dumps(b2c.getb2CUserByFilters(filtername), indent=4))
+    #print(json.dumps(b2c.getb2CUserByFilters(filtername), indent=4))
+    b2c.deleteb2cUserbySignInEmail(emailfilter)
     
 
 
